@@ -163,15 +163,15 @@ def get_rg_by_id_date(request, resource_group_id, rg_date):
         print(operations_dict)
         rg_data = {}
         for operation in operations_dict:
-            sql_get_order = '''
-            SELECT downstream_customer_orders 
-            FROM 02_plan_order WHERE plan_order_id = 'Flexi-15760' 
-            '''
-
             val = (rg_date, rg_id)
             print("OPERATION ID")
             print(operation['operation_id'].split('.')[0])
             operation_id = operation['operation_id'].split('.')[0]
+
+            sql_get_order = f'''SELECT * FROM 01_orders WHERE order_id = (SELECT downstream_customer_orders 
+            FROM 02_plan_order WHERE plan_order_id = '{operation_id}')
+            '''
+
             mycursor.execute(sql_get_order, operation_id)
 
             orders = dictfetchall(mycursor)
@@ -190,7 +190,9 @@ def get_rg_by_id_date(request, resource_group_id, rg_date):
                 'scheduling_space': operation['scheduling_space'],
                 'operation_code': operation['operation_code'],
                 'routing_step_id': operation['routing_step_id'],
-                'order_id': order['downstream_customer_orders'],
+                'order_id': order['order_id'],
+                'product_id': order['product_id'],
+                'product_name': order['product_name'],
 
             })
         rg_data = {
