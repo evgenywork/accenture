@@ -87,9 +87,9 @@ def get_main_json(request):
                 for dt in resources_dates:
                     groups_start_dates.append({
                         'start_plan_date': dt['start_plan_date'].isoformat(),
-                        'available_capacity': dt['available_capacity'],
-                        'free_capacity': dt['free_capacity'],
-                        'has_finite_capacity': dt['has_finite_capacity'],
+                        # 'available_capacity': dt['available_capacity'],
+                        # 'free_capacity': dt['free_capacity'],
+                        # 'has_finite_capacity': dt['has_finite_capacity'],
                         'percentage': dt['load'],
                         'color': dt['load_color'],
                     })
