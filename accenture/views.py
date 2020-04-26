@@ -109,8 +109,8 @@ def get_main_json(request):
         })
 
     db_conn.close()
-    with open("unicodeFile.json", "w", encoding='utf-8') as json_file:
-        html_resp = json.dumps(plants_data, json_file, ensure_ascii=False)
+    # with open("unicodeFile.json", "w", encoding='utf-8') as json_file:
+    #     html_resp = json.dumps(plants_data, json_file, ensure_ascii=False)
     # print(html_resp)
     print(plants_data)
-    return JsonResponse(html_resp, safe=False)
+    return JsonResponse(plants_data, safe=False)
