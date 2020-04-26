@@ -139,25 +139,21 @@ def get_rg_by_id_date(request, resource_group_id, rg_date):
     # rg_id = 'G_UPAH'
     rg_date = str(rg_date)
     rg_id = str(resource_group_id)
-    sql = "SELECT * FROM `04_operation-plan_order-order` WHERE date(start_plan_date) = %s and resource_group_id=%s"
+    sql = f"SELECT * FROM `04_operation-plan_order-order` WHERE date(start_plan_date) = '{rg_date}' and resource_group_id='{rg_id}'"
     val = (rg_date, rg_id)
-    mycursor.execute(sql, val)
+    mycursor.execute(sql)
 
     resource_groups = dictfetchall(mycursor)
-
-    '''
-    SELECT * FROM accenture.03_operation
-     WHERE (date(start_date_new) = '2020-04-15' 
-     OR date(end_date) = '2020-04-15') AND resource_group_id='G_UPAH';'''
+    print("SUCCESS")
 
     for resource_group in resource_groups:
         operations = []
-        sql_operations = '''
+        sql_operations = f'''
         SELECT * FROM 03_operation 
-     WHERE (date(start_date_new) = %s  
-     OR date(end_date) = %s) AND resource_group_id = %s '''
+     WHERE (date(start_date_new) = '{rg_date}'  
+     OR date(end_date) = '{rg_date}' ) AND resource_group_id = '{rg_id}' '''
         val = (rg_date, rg_date, rg_id)
-        mycursor.execute(sql_operations, val)
+        mycursor.execute(sql_operations)
 
         operations_dict = dictfetchall(mycursor)
         print(operations_dict)
@@ -172,7 +168,7 @@ def get_rg_by_id_date(request, resource_group_id, rg_date):
             FROM 02_plan_order WHERE plan_order_id = '{operation_id}')
             '''
 
-            mycursor.execute(sql_get_order, operation_id)
+            mycursor.execute(sql_get_order)
 
             orders = dictfetchall(mycursor)
             order = orders[0]
