@@ -1,0 +1,15 @@
+dateparser==0.7.4
+Django==2.2.7
+djangorestframework==3.11.0
+dnspython==1.16.0
+mysql-connector==2.2.9
+mysql-connector-python==8.0.19
+mysql-connector-python-rf==2.2.2
+mysqlclient==1.4.6
+protobuf==3.6.1
+python-dateutil==2.8.1
+pytz==2019.3
+regex==2020.4.4
+six==1.14.0
+sqlparse==0.3.1
+tzlocal==2.0.0

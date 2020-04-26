@@ -1,0 +1,11 @@
+api/config.py
+.idea/
+ai2flowengine/settings_local.py
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+.DS_Store
+ai2flow-env/
+.vscode/
