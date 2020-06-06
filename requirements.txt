@@ -1,5 +1,5 @@
 dateparser==0.7.4
-Django==2.2.7
+Django==2.2.13
 djangorestframework==3.11.0
 dnspython==1.16.0
 mysql-connector==2.2.9
